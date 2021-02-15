@@ -1,0 +1,3 @@
+Pour les moniteur il leur suffis de ce connecter d'ajouter un créneaux au cours et d'ensuite l'associer dans le planning avec l'élève et leur personne directement.
+Pour les éleves ils sont capables de voir leurs moniteurs.
+La directrice est à tout les droits sur l'autoécole et son but premier et d'inscrire les élévès aux examens

@@ -1,0 +1,25 @@
+#kyubi {
+    height: 200px;
+    box-shadow:20px 10px 0 0 coral;
+}
+b, h1
+{
+    color: coral;
+}
+h3{
+    text-align: center;
+    text-decoration: overline coral;
+}
+nav, li, ul{
+    list-style: none !important;
+}
+a{
+    color: white;
+}
+a:hover{
+    color: white;
+}
+a:visited{
+    color: white;
+}
+
