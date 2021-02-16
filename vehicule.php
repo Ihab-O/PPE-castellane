@@ -26,7 +26,6 @@ if (isset($_SESSION['email'])){
                 default;
             }
         }
-
 // EDIT
         require_once("vue/vue_insert_vehicule.php");
         if (isset($_POST['modifier'])) {

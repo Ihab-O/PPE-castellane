@@ -9,7 +9,6 @@
 <br>
 <table border="1" class="table table-dark">
     <tr>
-        <td> Id moniteur </td>
         <td> Nom moniteur </td>
         <td> Prénom moniteur </td>
         <td> Type Moniteur </td>
@@ -19,7 +18,6 @@
     <?php
     foreach ($lesMoniteurs as $unMoniteur) {
         echo   "<tr>
-                <td> " . $unMoniteur['idmoniteur'] . "</td>
                 <td> " . $unMoniteur['nomMoniteur'] . "</td>
                 <td> " . $unMoniteur['prenomMoniteur'] . "</td>
                 <td> " . $unMoniteur['typeMoniteur'] . "</td>

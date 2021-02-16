@@ -3,7 +3,6 @@
 <br>
 <table border="1" class="table table-dark">
     <tr>
-        <td> Id vehicule </td>
         <td> Nom Vehicule </td>
         <td> Type de Vehicule </td>
         <td> Date d'achat </td>
@@ -19,7 +18,6 @@
     <?php
     foreach ($lesVehicules as $unVehicule) {
         echo "<tr>
-                <td> " . $unVehicule['idvehicule'] . "</td>
                 <td> " . $unVehicule['nomVehicule'] . "</td>
                 <td> " . $unVehicule['typeVehicule'] . "</td>
                 <td> " . $unVehicule['anneeVehicule'] . "</td>

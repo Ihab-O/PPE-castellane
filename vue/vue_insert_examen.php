@@ -5,7 +5,11 @@
     <table border="0" class="table table-dark">
         <tr>
             <td> Type d'examen </td>
-            <td> <input type="text" placeholder="Type d'examen" name="typeExamen" value="<?php echo ($leExamen != null) ? $leExamen['typeExamen'] : ''; ?>">
+            <td><select name="typeExamen" id="typeExamen">
+                    <option value="CODE DE LA ROUTE">CODE DE LA ROUTE</option>
+                    <option value="PERMIS VOITURE">PERMIS VOITURE</option>
+                    <option value="PERMIS MOTO">PERMIS MOTO</option>
+                </select>
             </td>
         </tr>
         <tr>

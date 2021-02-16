@@ -146,4 +146,19 @@ class Modele
             return null;
         }
     }
+    public function insertUtilisateur($tab)
+    {
+        if ($this->unPdo != null)
+        {
+            $requete = "insert into utilisateur values (null, :nom, :prenom, :email,:mdp, :droits); ";
+            $donnees =array (":nom"=> $tab['nom'],
+                ":prenom"=> $tab['prenom'],
+                ":email"=> $tab['email'],
+                ":mdp"=> $tab['mdp'],
+                ":droits"=> $tab['droits']
+            );
+            $insert = $this->unPdo->prepare($requete);
+            $insert->execute ($donnees);
+        }
+    }
 }

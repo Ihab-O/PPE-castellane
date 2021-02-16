@@ -1,5 +1,5 @@
 <?php
-if (isset($_SESSION['email'])){
+if (isset($_SESSION['email'])) {
     if (isset($_SESSION['droits']) && $_SESSION['droits'] == "moniteur" || $_SESSION['droits'] == "admin") {
         $unControleur->setTable("etudiant");
         $lesEtudiants = $unControleur->selectAll(array("idetudiant", "nomEtudiant", "prenomEtudiant", "telephone"));
@@ -29,7 +29,8 @@ if (isset($_SESSION['email'])){
             }
         }
         $unControleur->setTable("planning");
-// EDIT
+
+        // EDIT
         require_once("vue/vue_insert_planning.php");
         if (isset($_POST['modifier'])) {
             $tab = array(
@@ -43,7 +44,6 @@ if (isset($_SESSION['email'])){
             $unControleur->update($tab, $where);
             header("Location: index.php?page=6");
         }
-
         if (isset($_POST['valider'])) {
             $tab = array(
                 "idetudiant" => $_POST['idetudiant'],
@@ -54,11 +54,15 @@ if (isset($_SESSION['email'])){
             );
             $unControleur->insert($tab);
         }
-
         $unControleur->setTable("LePlanning");
         $lePlanning = $unControleur->selectAll(array("*"));
         require_once("vue/vue_le_planning.php");
-    }else{
+
+    } elseif (isset($_SESSION['email']) && isset($_SESSION['droits']) && $_SESSION['droits'] == "etudiant") {
+        $unControleur->setTable("LePlanning");
+        $lePlanning = $unControleur->selectAll(array("*"));
+        require_once("vue/vue_le_planning.php");
+    } else {
         require_once('vue/vue_error_permission.php');
     }
 }

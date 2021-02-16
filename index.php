@@ -12,7 +12,9 @@ $unControleur = new Controleur($server, $bdd, $user, $mdp);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="css/style.css">
-
+    <link type="text/css" rel="stylesheet" href="css/login-form.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <?php
@@ -20,16 +22,18 @@ if (!isset($_SESSION['email'])) //pas de connexion
 {
     require_once("vue/vue_connexion.php");
 }
+if(isset($_POST['sinscrire'])){
+    $unControleur->insertUtilisateur($_POST);
+}
 if (isset($_POST['seconnecter'])) {
     $unUser = $unControleur->verifConnexion($_POST['email'], $_POST['mdp']);
-    if ($unUser != null && isset($unUser['droits'])) {
 
+    if ($unUser != null && isset($unUser['droits'])) {
         $_SESSION['email'] = $unUser["email"];
         $_SESSION['droits'] = $unUser["droits"];
         header("Location: index.php"); //recharge la page sur l'index.
-
     } else {
-        echo '<br/> Verifiez vos identifiants';
+        echo '<script>window = "Console"; window.alert("Mauvais mots de passe")</script>';
     }
 }
 
@@ -40,24 +44,54 @@ if (isset($_SESSION['email'])) {
         <li class="nav-item">
             <a class="nav-link" href="index.php?page=1">Acceuil</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="index.php?page=2">Gestions des étudiants</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="index.php?page=3">Gestion des moniteurs</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="index.php?page=4">Gestion des véhicules</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="index.php?page=5">Gestion des Cours</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="index.php?page=6">Gestion Planning</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="index.php?page=7">Gestion Examen</a>
-        </li>
+        <?php
+        if (isset($_SESSION['email'])){
+            if (isset($_SESSION['droits']) && $_SESSION['droits'] == "moniteur" || $_SESSION['droits'] == "admin") {
+                echo '<li class="nav-item">
+                        <a class="nav-link" href="index.php?page=2">Gestions des étudiants</a>
+                      </li>';
+            }
+        }
+        if (isset($_SESSION['email'])){
+            if (isset($_SESSION['droits']) && $_SESSION['droits'] == "admin"){
+                echo '<li class="nav-item">
+                        <a class="nav-link" href="index.php?page=3">Gestion des moniteurs</a>
+                      </li>';
+            }
+        }
+        if (isset($_SESSION['email'])){
+            if (isset($_SESSION['droits']) && $_SESSION['droits'] == "admin"){
+                echo '<li class="nav-item">
+                        <a class="nav-link" href="index.php?page=4">Gestion des véhicules</a>
+                      </li>';
+            }
+        }
+        if (isset($_SESSION['email'])) {
+            if (isset($_SESSION['droits']) && $_SESSION['droits'] == "moniteur" || $_SESSION['droits'] == "admin") {
+                echo '<li class="nav-item">
+                        <a class="nav-link" href="index.php?page=5">Gestion des Cours</a>
+                      </li>';
+            }
+        }
+        if (isset($_SESSION['email'])) {
+            if (isset($_SESSION['droits']) && $_SESSION['droits'] == "moniteur" || $_SESSION['droits'] == "admin") {
+                echo '<li class="nav-item">
+                        <a class="nav-link" href="index.php?page=6">Gestion Planning</a>
+                      </li>';
+                } else {
+                    echo '<li class="nav-item">
+                            <a class="nav-link" href="index.php?page=6">Mon Planning</a>
+                          </li>';
+                }
+            }
+        if (isset($_SESSION['email'])) {
+            if (isset($_SESSION['droits']) && $_SESSION['droits'] == "admin") {
+                echo '<li class="nav-item">
+                        <a class="nav-link" href="index.php?page=7">Gestion Examen</a>
+                      </li>';
+                }
+            }
+        ?>
         <li class="nav-item">
             <a href="index.php?page=8">
                 <img src="images/deconnexion.png" height="35" width="80">

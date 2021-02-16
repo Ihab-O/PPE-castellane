@@ -46,4 +46,8 @@ class Controleur
     {
         return $this->unModele->verifConnexion($email, $mdp);
     }
+    public function insertUtilisateur ($tab)
+    {
+        $this->unModele->insertUtilisateur($tab);
+    }
 }

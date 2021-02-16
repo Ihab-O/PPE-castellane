@@ -3,7 +3,6 @@
 <br>
 <table border="1" class="table table-dark">
     <tr>
-        <td> Id Cours </td>
         <td> Date du Cours </td>
         <td> Nombre d'heure du Cours </td>
         <td> Tarif à l'heure </td>
@@ -13,7 +12,6 @@
     <?php
     foreach ($lesCours as $unCours) {
         echo  "<tr>
-                <td> " . $unCours['idcours'] . "</td>
                 <td> " . $unCours['dateCours'] . "</td>
                 <td> " . $unCours['heureCours'] . "</td>
                 <td> " . $unCours['tarifHeure'] . "</td>
